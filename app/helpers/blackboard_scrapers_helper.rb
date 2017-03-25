@@ -1,0 +1,2 @@
+module BlackboardScrapersHelper
+end
