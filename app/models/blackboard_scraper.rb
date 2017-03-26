@@ -15,7 +15,7 @@ class BlackboardScraper
         Capybara::Poltergeist::Driver.new(app, :phantomjs => Phantomjs.path)
       end
       Capybara.default_driver = :poltergeist
-      self.agent = Capybara.current_session
+      self.agent = Capybara::Session.new(:poltergeist)
     end
     
     def scrape_classes
