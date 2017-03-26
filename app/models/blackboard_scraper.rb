@@ -38,8 +38,38 @@ class BlackboardScraper < ActiveRecord::Base
             student_roster = self.agent.all(:css, "#USERS_AVAIL option", :between => 1..60)
              if student_roster.length > 0
                course[:roster] = student_roster.map{|student| student.text}
-            end 
+             end 
         end
     end
+    
+    def create_user
+      User.create(name: self.student_name, username: self.username, password: self.password)
+    end
+    
+    def create_classes
+      user = self.create_user
+      self.classes.each do |classroom|
+        room = Classroom.find_or_create_by(class_name: classroom[:className], class_id: classroom[:class_id])
+        room.users << user
+        room.save
+        self.create_roster(room, classroom)
+      end
+      user.formatted_user
+    end
+    
+    def create_roster(room, classroom)
+      classroom[:roster].each do |student|
+        Roster.find_or_create_by(name: student, classroom_id: room.id)
+      end
+    end
+    
+    def self.create_user_classes(login_params)
+         scraper = self.new(login_params)
+         scraper.scrape_classes
+         scraper.scrape_roster
+         scraper.create_classes
+    end
+    
 end
 # {"username":"mmalek1421", "password":"Gleo1421"}
+# render json: {student_name: scraper.student_name, classes: scraper.classes}
