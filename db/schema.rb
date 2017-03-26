@@ -13,10 +13,8 @@
 
 ActiveRecord::Schema.define(version: 20170325232552) do
 
-  create_table "blackboard_scrapers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "classrooms", force: :cascade do |t|
     t.string   "class_id"

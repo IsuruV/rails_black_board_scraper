@@ -1,4 +1,4 @@
-class BlackboardScraper < ActiveRecord::Base
+class BlackboardScraper
     require 'capybara/poltergeist'
     attr_accessor :agent, :classes, :roster, :username, :password, :student_name
     
