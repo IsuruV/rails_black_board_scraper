@@ -2,9 +2,10 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+gem 'rails', '>= 5.0.0.beta3', '< 5.1'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
+gem 'redis'
 # Use SCSS for stylesheets
 # Use Uglifier as compressor for JavaScript assets
 # Use CoffeeScript for .coffee assets and views
@@ -18,8 +19,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'pry'
-# gem 'watir'
-# gem 'mechanize', '~> 2.7', '>= 2.7.5'
+gem 'puma'
 gem 'capybara', '~> 2.7', '>= 2.7.1'
 gem 'poltergeist'
 gem 'phantomjs', '~> 2.1', '>= 2.1.1.0'

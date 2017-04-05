@@ -42,10 +42,12 @@ class BlackboardScraper
         end
     end
     
+    ##create  user with scraped data
     def create_user
       User.create(name: self.student_name, username: self.username, password: self.password)
     end
     
+    ## create classes and associate user
     def create_classes
       user = self.create_user
       self.classes.each do |classroom|
@@ -54,9 +56,10 @@ class BlackboardScraper
         room.save
         self.create_roster(room, classroom)
       end
-      user.formatted_user
+      user
     end
     
+    ## create roster and assocate class
     def create_roster(room, classroom)
       classroom[:roster].each do |student|
         Roster.find_or_create_by(name: student, classroom_id: room.id)
@@ -64,12 +67,10 @@ class BlackboardScraper
     end
     
     def self.create_user_classes(login_params)
-         scraper = self.new(login_params)
-         scraper.scrape_classes
-         scraper.scrape_roster
-         scraper.create_classes
+        scraper = self.new(login_params)
+        scraper.scrape_classes
+        scraper.scrape_roster
+        scraper.create_classes
     end
     
 end
-# {"username":"mmalek1421", "password":"Gleo1421"}
-# render json: {student_name: scraper.student_name, classes: scraper.classes}
