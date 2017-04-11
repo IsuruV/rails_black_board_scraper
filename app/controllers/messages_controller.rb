@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
         # require 'pry'; binding.pry
         @messages = Message.all.where(classroom_id: message_all_params)
         render json: {"messages": @messages.map{|message| message.message_format}}
-    end
+    end 
     
 private
     def message_params

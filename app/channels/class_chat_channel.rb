@@ -3,6 +3,10 @@ class ClassChatChannel < ApplicationCable::Channel
     # stream_from "some_channel"
     stream_from 'messages'
   end
+  
+  # def subscribed
+  #   stream_from "room-#{params['classroom_id']}"
+  # end
 
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
@@ -22,6 +26,17 @@ class ClassChatChannel < ApplicationCable::Channel
           head :ok
       end
   end
+  
+  # def speak(data)
+  #   # require 'pry'; binding.pry
+  #   message = Message.new(content: data['content'], classroom_id: data['classroom_id'], user_id: data['user_id'])
+  #     if message.save
+  #         ActionCable.server.broadcast "room-#{data['classroom_id']}",
+  #         message: message.content,
+  #         user: message.user
+  #         head :ok
+  #     end
+  # end
   
   private
     def message_params
