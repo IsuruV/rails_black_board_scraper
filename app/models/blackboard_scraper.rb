@@ -56,6 +56,8 @@ class BlackboardScraper
         room.save
         self.create_roster(room, classroom)
       end
+      ##
+      user.save
       user
     end
     
