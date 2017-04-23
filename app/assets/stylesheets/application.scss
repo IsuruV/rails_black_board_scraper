@@ -3,3 +3,68 @@
 @import "classrooms";
 @import "messages";
 @import "users";
+@import "semantic-ui";
+
+    body {
+      background-color: #a3e3fc;
+      color: #4e5562;
+      h1 {
+        text-align: center;
+      }
+    }
+    body > .grid {
+      height: 100%;
+    }
+    .image {
+      margin-top: 50px;
+      width: 300px;
+    }
+    .column {
+      max-width: 450px;
+        
+    }
+    
+    #classroom-title {
+      margin-top: 10%;
+    }
+    
+    .logo {
+      width: 100px;
+    }
+  
+  #classrooms {
+    margin-top: 20px;
+    padding-bottom: 5%;
+    border-radius: 2px;
+  }
+    
+    #logout {
+      margin-top: 20px;
+      font-size: 15px;
+    }
+    
+    #message_form {
+      padding-bottom: 50px;
+    }
+    
+    #message {
+      width: 40%;
+      padding: 5px;
+      border-radius: 2px;
+      background: #e1e1e1;
+    }
+    
+    textarea {
+      resize: none;
+    }
+  
+    #current_user_message {
+      @extend #message;
+      margin-left: 60%;
+      color: white;
+      background: #fbbd08;
+    }
+  
+#update_classes {
+  text-align: center;
+}

@@ -10,7 +10,13 @@ class ClassroomsController < ApplicationController
     end
     
     def index
-        @classrooms = current_user.classrooms
+        # @classrooms = Classroom.all
+        # render json: @classrooms
+        @user = current_user
+        respond_to do |format|
+          format.html { @classrooms = current_user.classrooms }
+          format.json { render :json => Classroom.all.to_json }
+        end
     end
     
     private

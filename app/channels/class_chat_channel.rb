@@ -1,4 +1,8 @@
 class ClassChatChannel < ApplicationCable::Channel
+  # def initialize(data)
+  #   self.speak(data)
+  # end
+  
   def subscribed
     stream_from 'messages'
   end
@@ -15,23 +19,12 @@ class ClassChatChannel < ApplicationCable::Channel
   #   ActionCable.server.broadcast "messages", message: data['message'] 
   # end
   
-  # def speak(data)
-  #   # require 'pry'; binding.pry
-  #   message = Message.new(content: data['content'], classroom_id: data['classroom_id'], user_id: data['user_id'])
-  #     if message.save
-  #         ActionCable.server.broadcast 'messages',
-  #         message: {"content":message.content, "user_id": message.user_id},
-  #         user: message.user
-  #         head :ok
-  #     end
-  # end
-  
   def speak(data)
-    # require 'pry'; binding.pry
     message = Message.new(content: data['content'], classroom_id: data['classroom_id'], user_id: data['user_id'])
       if message.save
-          ActionCable.server.broadcast "room-#{data['classroom_id']}",
-          message: message.content,
+          ActionCable.server.broadcast 'messages',
+          message_room_id: message.classroom_id,
+          message: {"content":message.content, "user_id": message.user_id},
           user: message.user
           head :ok
       end

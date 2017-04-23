@@ -9,6 +9,7 @@
 $(document).on('ready', function() {
   submitNewMessage();
   establishConnection();
+  updateClasses();
 });
 
 
@@ -30,8 +31,14 @@ function establishMessage(App){
   },
   renderMessage: function(data) { 
     let currentRoomId = parseInt($('#classroom_id').val())
+    let current_user_id = parseInt($('#current_user_id').val());
     if(currentRoomId == data.message_room_id){
-      return "<p> <b>" + data.user.username + ": </b>" + data.message + "</p>";
+        if(current_user_id === data.message.user_id){
+          return `<p id="current_user_message"><strong>${data.user.username}</strong> ${data.message.content}</p>`
+        }else{
+          return `<p id="message"><strong>${data.user.username}</strong> ${data.message.content}</p>`
+        }
+  // return "<p> <b>" + data.user.name + ": </b>" + data.message.content + "</p>";
     }
   }
 });
@@ -50,4 +57,18 @@ function submitNewMessage(){
 }
 
 
+const updateClasses = ()=>{
+  $(document).on('click','#update_classes',(ev)=>{
+    $('div.classes').replaceWith(`<div class="ui segment">
+  <div class="ui active inverted dimmer">
+    <div class="ui large indeterminate text loader">Fetching Classes from Blackboard</div>
+  </div>
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <p></p>
+</div>`);
 
+  })
+}

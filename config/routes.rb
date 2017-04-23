@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   
   root to: 'users#login'
-
+  get '/users/log_off' => "users#log_off"
+  get '/blackboard_scrapers/update_classes' => "blackboard_scrapers#update_classes"
   resources :messages
   resources :rosters
   resources :user_classrooms
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   resources :blackboard_scrapers
   
   post "/new_website" => "blackboard_scrapers#new_website"
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

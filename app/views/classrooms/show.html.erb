@@ -1,8 +1,17 @@
-
+<div class="top_link"><a href="/classrooms">Back to Classrooms</a></div>
 
 <div onLoad="loadOnce()" class="row col-md-8 col-md-offset-2">
   <input id="classroom_id" type="hidden" value=<%=@classroom.id%> ></input>
-  <h1><%= @classroom.class_name %></h1>
+  <div class="ui stacked segment class_name"><h4><%= @classroom.class_name %></h4>  
+  <!--Student Roster-->
+<div class="dropdown roster">
+  <button class="btn btn-xs btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+  <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+         <%= render partial: 'roster', collection: @classroom.rosters%>
+      </ul>
+</div>
+<!--Student Roster--></div>
 
 <div class="panel panel-default">
   <% if @classroom.messages.any? %>
@@ -14,9 +23,8 @@
     </div>
   <%end%>
 </div>
-
-
-  <%= render partial: 'messages/message_form', locals: {message: @message, classroom: @classroom}%>
+<input id="current_user_id" type="hidden" value=<%=current_user.id%>></input>
+  <div id="message_form"> <%= render partial: 'messages/message_form', locals: {message: @message, classroom: @classroom}%></div></h2>
   
   <script>
        if (!(window.location.href.indexOf('#') > -1)){
