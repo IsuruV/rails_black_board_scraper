@@ -35,28 +35,42 @@ class BlackboardScraper
         self.classes.each do |course|
           course_id = course[:class_id]
             self.agent.visit "https://bbhosted.cuny.edu/webapps/blackboard/execute/displayEmail?navItem=email_select_students&course_id=#{course_id}"
-            student_roster = self.agent.all(:css, "#USERS_AVAIL option", :between => 1..60)
+            student_roster = self.agent.all(:css, "#USERS_AVAIL option", :between => 1..210)
              if student_roster.length > 0
                course[:roster] = student_roster.map{|student| student.text}
              end 
         end
     end
     
+    ##create  user with scraped data
     def create_user
-      User.create(name: self.student_name, username: self.username, password: self.password)
+      user = User.find_by(username: self.username)
+      if !user
+        user = User.new(username: self.username, name: self.student_name)
+        user.password = self.password
+        user.save
+      end
+      user
     end
     
+ 
+    ## create classes and associate user
     def create_classes
       user = self.create_user
       self.classes.each do |classroom|
         room = Classroom.find_or_create_by(class_name: classroom[:className], class_id: classroom[:class_id])
-        room.users << user
-        room.save
-        self.create_roster(room, classroom)
+        if !user.classrooms.include? room
+         room.users << user
+         room.save
+         self.create_roster(room, classroom)
+        end
       end
-      user.formatted_user
+      ##
+      user.save
+      user
     end
     
+    ## create roster and assocate class
     def create_roster(room, classroom)
       classroom[:roster].each do |student|
         Roster.find_or_create_by(name: student, classroom_id: room.id)
@@ -64,12 +78,10 @@ class BlackboardScraper
     end
     
     def self.create_user_classes(login_params)
-         scraper = self.new(login_params)
-         scraper.scrape_classes
-         scraper.scrape_roster
-         scraper.create_classes
+        scraper = self.new(login_params)
+        scraper.scrape_classes
+        scraper.scrape_roster
+        scraper.create_classes
     end
     
 end
-# {"username":"mmalek1421", "password":"Gleo1421"}
-# render json: {student_name: scraper.student_name, classes: scraper.classes}

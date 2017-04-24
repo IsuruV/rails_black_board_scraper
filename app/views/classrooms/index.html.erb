@@ -1,0 +1,21 @@
+<div class="row col-md-8 col-md-offset-2" id="classroom-title">
+  <h1>
+  <img src="https://raw.githubusercontent.com/CUNYTech/Blackboard-Messenger/master/bbm_logo.png" class="logo">
+  Classrooms
+  </h1>
+</div>
+<div class="top_link"><a href="/users/log_off"><h5><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i> Logout</a></h5></div>
+
+<div class="row col-md-8 col-md-offset-2" id="classrooms">
+  <div id="classroom-errors">
+    
+  </div>
+  <div id="classes" class="classes">
+      <% if @classrooms.any? %>
+        <%= render @classrooms%>
+      <% end %>
+       <div id="update_classes"><a href="/blackboard_scrapers/update_classes"><button id="update_classes" class="ui yellow button" type="submit">Update Classes</button></a></div>
+  </div>
+
+  </div>
+</div>

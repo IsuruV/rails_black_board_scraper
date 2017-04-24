@@ -1,0 +1,32 @@
+<div class="login ui middle aligned center aligned grid">
+  <div class="column">
+    <h1 class="ui image header">
+      <div class="content">
+        <img src="https://raw.githubusercontent.com/CUNYTech/Blackboard-Messenger/master/bbm_logo.png" class="image">
+      </div>
+    </h1>
+    <%= form_for(@user, url: "/new_website", :html => { :class => "ui large form" }) do |f|%>
+      <div class="ui stacked segment">
+        <p><strong>Login to get started</strong></p>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="username" placeholder="Username">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Password">
+          </div>
+        </div>
+        <button id="login" class="ui fluid large yellow submit button" type="submit">Login</button>
+      </div>
+
+      <div class="ui error message"></div>
+
+    <% end %>
+
+  </div>
+  
+</div>

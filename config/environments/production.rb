@@ -1,6 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  config.web_socket_server_url = "wss://shielded-peak-13145.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://shielded-peak-13145.herokuapp.com', 'http://www.shielded-peak-13145.herokuapp.com']
+  config.action_cable.disable_request_forgery_protection = true
   # Code is not reloaded between requests.
   config.cache_classes = true
 

@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
     has_many :user_classrooms
     has_many :classrooms, :through => :user_classrooms
-    
+    validates :username, presence: true, uniqueness: true
+    include BCrypt
+    has_secure_password
+
     def formatted_user
         classes = []
         self.classrooms.each do |room|
@@ -10,4 +13,13 @@ class User < ActiveRecord::Base
         end
         {student:{id: self.id, name: self.name, username: self.username}, classes: classes }
     end
+    
+    def formatted_user_message
+        {id: self.id, name: self.name, username: self.username }
+    end
+    
+    def check_class_exists(room)
+        self.classrooms.includes(room)
+    end
+    
 end
