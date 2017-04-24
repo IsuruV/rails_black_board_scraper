@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   
   root 'users#login'
+  get '/' => 'users#login'
   get '/users/log_off' => "users#log_off"
   get '/blackboard_scrapers/update_classes' => "blackboard_scrapers#update_classes"
   resources :messages
