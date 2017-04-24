@@ -34,7 +34,7 @@ gem 'capybara', '~> 2.7', '>= 2.7.1'
 gem 'poltergeist'
 gem 'phantomjs', '~> 2.1', '>= 2.1.1.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'

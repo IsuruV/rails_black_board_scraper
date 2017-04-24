@@ -8,7 +8,7 @@ class BlackboardScrapersController < ApplicationController
     end
     
     def new_website
-        @user = User.find_by(username: login_params[:username], password: login_params[:password])
+        @user = User.find_by(username: login_params[:username])
         
         session[:user_name] = login_params[:username]; session[:password] = login_params[:password]
 

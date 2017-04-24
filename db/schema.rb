@@ -10,46 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170401165937) do
+ActiveRecord::Schema.define(version: 20170424214305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "classrooms", id: :serial, force: :cascade do |t|
-    t.string "class_id"
-    t.string "class_name"
+  create_table "classrooms", force: :cascade do |t|
+    t.string   "class_id"
+    t.string   "class_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "messages", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "classroom_id"
-    t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "messages", id: :bigserial, force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "classroom_id"
+    t.string   "content"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  create_table "rosters", id: :serial, force: :cascade do |t|
-    t.integer "classroom_id"
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "rosters", force: :cascade do |t|
+    t.integer  "classroom_id"
+    t.string   "name"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  create_table "user_classrooms", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "classroom_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "user_classrooms", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "classroom_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  create_table "users", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.string "username"
-    t.string "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "username"
+    t.string   "password"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
   end
 
 end

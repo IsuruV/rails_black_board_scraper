@@ -2,7 +2,9 @@ class User < ActiveRecord::Base
     has_many :user_classrooms
     has_many :classrooms, :through => :user_classrooms
     validates :username, presence: true, uniqueness: true
-    
+    include BCrypt
+    has_secure_password
+
     def formatted_user
         classes = []
         self.classrooms.each do |room|
@@ -19,13 +21,5 @@ class User < ActiveRecord::Base
     def check_class_exists(room)
         self.classrooms.includes(room)
     end
-    # def password
-    #  @password ||= Password.new(password_hash)
-    # end
-
-    # def password=(new_password)
-    #   @password = Password.create(new_password)
-    #   self.password_hash = @password
-    # end
     
 end

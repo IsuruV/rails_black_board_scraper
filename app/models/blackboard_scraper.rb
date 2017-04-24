@@ -44,9 +44,12 @@ class BlackboardScraper
     
     ##create  user with scraped data
     def create_user
-      user = User.find_or_create_by(username: self.username, password: self.password)
-      user.name = self.student_name
-      user.save
+      user = User.find_by(username: self.username)
+      if !user
+        user = User.new(username: self.username, name: self.student_name)
+        user.password = self.password
+        user.save
+      end
       user
     end
     
