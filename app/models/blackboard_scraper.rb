@@ -35,7 +35,7 @@ class BlackboardScraper
         self.classes.each do |course|
           course_id = course[:class_id]
             self.agent.visit "https://bbhosted.cuny.edu/webapps/blackboard/execute/displayEmail?navItem=email_select_students&course_id=#{course_id}"
-            student_roster = self.agent.all(:css, "#USERS_AVAIL option", :between => 1..140)
+            student_roster = self.agent.all(:css, "#USERS_AVAIL option", :between => 1..210)
              if student_roster.length > 0
                course[:roster] = student_roster.map{|student| student.text}
              end 

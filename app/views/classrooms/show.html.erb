@@ -1,11 +1,11 @@
-<div class="top_link"><a href="/classrooms">Back to Classrooms</a></div>
+<div class="top_link"><a href="/classrooms"> <h5><i class="fa fa-chevron-left fa-lg" aria-hidden="true"></i> Back to Classrooms</h5> </a></div>
 
 <div onLoad="loadOnce()" class="row col-md-8 col-md-offset-2">
   <input id="classroom_id" type="hidden" value=<%=@classroom.id%> ></input>
   <div class="ui stacked segment class_name"><h4><%= @classroom.class_name %></h4>  
   <!--Student Roster-->
 <div class="dropdown roster">
-  <button class="btn btn-xs btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+  <button class="btn btn-xs btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Roster
   <span class="caret"></span></button>
       <ul class="dropdown-menu">
          <%= render partial: 'roster', collection: @classroom.rosters%>
@@ -13,7 +13,7 @@
 </div>
 <!--Student Roster--></div>
 
-<div class="panel panel-default">
+<div id="scroll" class="panel panel-default room">
   <% if @classroom.messages.any? %>
     <div class="panel-body" id="messages">
       <%= render partial: 'messages/message', collection: @classroom.messages%>
@@ -31,5 +31,10 @@
     window.location.href = window.location.href + "#"
     window.location.reload();
     } 
+    
+//     window.setInterval(function() {
+//     var elem = document.getElementById('scroll');
+//     elem.scrollTop = elem.scrollHeight;
+// }, 1000);
   </script>
 </div>

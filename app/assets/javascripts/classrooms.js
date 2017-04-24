@@ -24,10 +24,12 @@ function establishConnection(){
 }
 
 function establishMessage(App){
+  var elem = document.getElementById('scroll');
   App.messages = App.cable.subscriptions.create('ClassChatChannel', {  
   received: function(data) {
     $("#messages").removeClass('hidden')
-    return $('#messages').append(this.renderMessage(data));
+     $('#messages').append(this.renderMessage(data));
+     elem.scrollTop = elem.scrollHeight;
   },
   renderMessage: function(data) { 
     let currentRoomId = parseInt($('#classroom_id').val())
@@ -38,7 +40,6 @@ function establishMessage(App){
         }else{
           return `<p id="message"><strong>${data.user.username}</strong> ${data.message.content}</p>`
         }
-  // return "<p> <b>" + data.user.name + ": </b>" + data.message.content + "</p>";
     }
   }
 });

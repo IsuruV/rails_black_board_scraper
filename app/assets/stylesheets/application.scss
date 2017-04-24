@@ -4,6 +4,8 @@
 @import "messages";
 @import "users";
 @import "semantic-ui";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
     body {
       background-color: #a3e3fc;
@@ -67,4 +69,22 @@
   
 #update_classes {
   text-align: center;
+}
+
+.room {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.top_link {
+  margin-top: 10px;
+}
+
+.dropdown-menu {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+#roster {
+  padding: 5px;
 }

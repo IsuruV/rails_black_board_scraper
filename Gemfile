@@ -25,6 +25,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+gem 'font-awesome-sass', '~> 4.7.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'pry'
