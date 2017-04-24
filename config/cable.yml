@@ -1,6 +1,6 @@
 production:
   adapter: redis
-  url: redis://redistogo:0bbf05a66c6fe72a5b630563f520beb4@barreleye.redistogo.com:10567/
+  url: redis://redistogo:036964599750c69ff2c191169dfa4aa1@chubb.redistogo.com:9121/
 # redis://localhost:6379/1
 development:
   adapter: async
