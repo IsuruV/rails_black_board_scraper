@@ -1,8 +1,5 @@
 class ClassChatChannel < ApplicationCable::Channel
-  # def initialize(data)
-  #   self.speak(data)
-  # end
-  
+
   def subscribed
     stream_from 'messages'
   end
@@ -30,9 +27,4 @@ class ClassChatChannel < ApplicationCable::Channel
       end
   end
   
-  private
-    def message_params
-      params.require(:message).permit(:content, :chatroom_id, :user_id)
-    end
-
 end

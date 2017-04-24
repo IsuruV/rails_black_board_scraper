@@ -68,6 +68,7 @@ const updateClasses = ()=>{
   <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
   <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
   <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
+  <img class="ui wireframe image" src="https://semantic-ui.com/images/wireframe/short-paragraph.png">
   <p></p>
 </div>`);
 
