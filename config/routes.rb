@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
   root 'users#login'
   get '/' => 'users#login'
+  get '/login' => 'users#login'
   get '/users/log_off' => "users#log_off"
   get '/blackboard_scrapers/update_classes' => "blackboard_scrapers#update_classes"
   resources :messages
